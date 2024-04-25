@@ -5,10 +5,10 @@ from cute_voice import create_cute_voice
 
 # Driver code
 if __name__ == '__main__':
-    transcription = record_and_transcribe_audio()["text"]
+    transcription = record_and_transcribe_audio().text
     response = generate_chatgpt_response(transcription)
-    if response['choices'] and response['choices'][0]['message']:
-        message = response['choices'][0]['message']['content']
+    if response.choices and response.choices[0].message:
+        message = response.choices[0].message.content
         print(message)
         create_cute_voice(message)
     else:

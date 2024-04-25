@@ -22,13 +22,17 @@ def create_cute_voice(text):
 
     # Save the modified sound
     # high_pitch_filename = "cute_voice_high_pitch.mp3"
-    # hipitch_sound.export("cute_voice_high_pitch.mp3", format="mp3")
+    # hipitch_sound.export(high_pitch_filename, format="mp3")
 
     # Play the modified sound directly from memory
     play(hipitch_sound)
 
+    # Play the modified sound from the file
+    # playsound(high_pitch_filename)
+
     # Remove the temporary files
     os.remove(filename)
+    # os.remove(high_pitch_filename)
 
 # Function to create the basic voice
 def create_basic_voice(text):

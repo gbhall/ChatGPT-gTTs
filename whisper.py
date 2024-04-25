@@ -1,11 +1,12 @@
 import os
 import sounddevice as sd
 import soundfile as sf
-import openai
+from openai import OpenAI
+client = OpenAI()
 
 # Function to record audio from the default input device
 def record_audio():
-    duration = 5  # seconds
+    duration = 5 # seconds
     samplerate = 44100
     print("Recording...")
     samples = sd.rec(int(duration * samplerate), samplerate=samplerate, channels=1)
@@ -23,8 +24,11 @@ def save_audio(samples, samplerate):
 def transcribe_audio(filename):
     print("Transcribing...")
     with open(filename, "rb") as file:
-        transcription = openai.Audio.transcribe("whisper-1", file)
-        print("Transcription:", transcription)
+        transcription = client.audio.transcriptions.create(
+            model="whisper-1", 
+            file=file
+        )
+        print("Transcription:", transcription.text)
         return transcription
 
 # Function that uses the above functions to record, save and transcribe audio
